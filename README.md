@@ -1,7 +1,6 @@
 <!--
-  Before publishing, replace the two placeholders:
+  Before publishing, replace the placeholder:
   - YOUR-PAGES-URL  → your GitHub Pages address, e.g. https://kotyzap.github.io/free-music-jukebox/
-  - YOUR-KOFI       → your Ko-fi handle
 -->
 
 <a href="https://YOUR-PAGES-URL/">
@@ -20,7 +19,7 @@
 </p>
 
 <p align="center">
-  <b>Pick tracks on Pixabay Music, click ♫, and they play from your AXIS camera’s audio line-out.</b><br>
+  <b>Pick tracks on <a href="https://pixabay.com/music/">Pixabay Music</a>, click ♫, and they play from your AXIS camera’s audio line-out.</b><br>
   No subscription, no per-track fee, no attribution — and a log of every play with its licence.
 </p>
 
@@ -33,6 +32,10 @@
   <a href="https://YOUR-PAGES-URL/?lang=cs">Česky</a> ·
   <a href="https://YOUR-PAGES-URL/?lang=ja">日本語</a> ·
   <a href="https://YOUR-PAGES-URL/?lang=de">Deutsch</a>
+</p>
+
+<p align="center">
+  <a href='https://ko-fi.com/K3K6RR4LY' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 </p>
 
 <br>
@@ -190,7 +193,7 @@ Install the resulting zip in CamScripter. The build uses the TypeScript version 
 <br>
 
 <p align="center">
-  <a href="https://ko-fi.com/YOUR-KOFI"><img src="https://img.shields.io/badge/☕%20Buy%20me%20a%20coffee-Ko--fi-d8f04a?style=for-the-badge&labelColor=12303f" alt="Buy me a coffee on Ko-fi"></a>
+  <a href='https://ko-fi.com/K3K6RR4LY' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi6.png?v=6' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 </p>
 
 <p align="center">

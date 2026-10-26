@@ -137,6 +137,8 @@ ol.inst li:before{content:counter(i);position:absolute;left:22px;top:20px;width:
 ol.inst b{color:var(--ink)}
 code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink);word-break:break-word}
 /* cta + footer */
+.kofibtn{display:inline-flex;align-items:center}
+.kofibtn img{display:block}
 .cta{border-radius:22px;background:var(--lime);color:#14202b;padding:48px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
 .cta div:first-child{flex:1 1 420px}
 .cta h2{margin:0 0 8px;font-size:clamp(28px,3.6vw,40px);line-height:1.08}
@@ -289,7 +291,7 @@ footer p{margin:0}
       <div><h2 class="display" data-i18n="cta_title"></h2><p data-i18n="cta_sub"></p></div>
       <div class="ctas" style="margin:0">
         <a class="btn dark" href="#install" data-cfg="release" data-i18n="cta_dl"></a>
-        <a class="btn line" href="#" data-cfg="kofi" data-i18n="cta_kofi" hidden></a>
+        <a class="kofibtn" href="#" data-cfg="kofi" target="_blank" hidden><img height="36" style="border:0px;height:36px;" src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" border="0" data-i18n-alt="cta_kofi" alt="Buy Me a Coffee at ko-fi.com"></a>
       </div>
     </div>
   </div>
@@ -300,6 +302,7 @@ footer p{margin:0}
   <div class="wrap">
     <p><b>Pavel Kotyza</b> · <a href="https://4xs.dev" rel="noopener">4xs.dev</a> · <i>I teach Axis cameras new tricks!</i></p>
     <p><span data-i18n="foot_aff"></span> <span data-i18n="foot_tp"></span></p>
+    <a class="kofibtn" href="#" data-cfg="kofi" target="_blank" hidden><img height="36" style="border:0px;height:36px;" src="https://storage.ko-fi.com/cdn/kofi6.png?v=6" border="0" data-i18n-alt="cta_kofi" alt="Buy Me a Coffee at ko-fi.com"></a>
   </div>
 </footer>
 
@@ -307,7 +310,7 @@ footer p{margin:0}
 // ---- Fill these in before publishing (buttons stay hidden / point to #install while empty) ----
 const CONFIG = {
   repo: '',  // e.g. 'https://github.com/kotyzap/free-music-jukebox'
-  kofi: '',  // e.g. 'https://ko-fi.com/yourname'
+  kofi: 'https://ko-fi.com/K3K6RR4LY',
 };
 
 const LOG = [
@@ -323,7 +326,7 @@ en: {
   nav_free:'Why it’s free', nav_compare:'Compare', nav_how:'How it works', nav_proof:'Play log',
   badge:'Pixabay Content License · free for commercial use',
   title:'100% free music for your venue. Played by the camera you already have.',
-  lead:'Pick tracks on Pixabay Music, click ♫, and they play from your AXIS camera’s audio line-out. No subscription, no per-track fee, no attribution — and a log of every play with its licence.',
+  lead:'Pick tracks on <a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a>, click ♫, and they play from your AXIS camera’s audio line-out. No subscription, no per-track fee, no attribution — and a log of every play with its licence.',
   cta_get:'Get it free', cta_compare:'Compare the options',
   stat1_v:'$0', stat1:'for the music', stat2_v:'$0', stat2:'for the app', stat3_v:'0', stat3:'extra devices',
   free_kicker:'Why it’s free', free_title:'The licence is the feature.',
@@ -366,7 +369,7 @@ cs: {
   nav_free:'Proč zdarma', nav_compare:'Srovnání', nav_how:'Jak to funguje', nav_proof:'Záznam přehrávání',
   badge:'Pixabay Content License · zdarma i pro komerční použití',
   title:'Hudba pro vaši provozovnu, 100% zdarma. Hraje ji kamera, kterou už máte.',
-  lead:'Vyberte skladby na Pixabay Music, klikněte na ♫ a hrají z audio výstupu vaší kamery AXIS. Žádné předplatné, žádný poplatek za skladbu, žádné uvádění autora — a záznam každého přehrání i s licencí.',
+  lead:'Vyberte skladby na <a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a>, klikněte na ♫ a hrají z audio výstupu vaší kamery AXIS. Žádné předplatné, žádný poplatek za skladbu, žádné uvádění autora — a záznam každého přehrání i s licencí.',
   cta_get:'Získat zdarma', cta_compare:'Porovnat možnosti',
   stat1_v:'0 Kč', stat1:'za hudbu', stat2_v:'0 Kč', stat2:'za aplikaci', stat3_v:'0', stat3:'zařízení navíc',
   free_kicker:'Proč zdarma', free_title:'Licence je ta hlavní výhoda.',
@@ -409,7 +412,7 @@ ja: {
   nav_free:'無料の理由', nav_compare:'比較', nav_how:'仕組み', nav_proof:'再生ログ',
   badge:'Pixabay Content License · 商用利用も無料',
   title:'お店のBGMを、100%無料で。<br>今あるカメラが再生します。',
-  lead:'Pixabay Musicで曲を選んで♫をクリックするだけで、AXISカメラの音声出力から再生されます。サブスクリプションも1曲ごとの料金もクレジット表記も不要。再生のたびにライセンスとともに記録されます。',
+  lead:'<a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a>で曲を選んで♫をクリックするだけで、AXISカメラの音声出力から再生されます。サブスクリプションも1曲ごとの料金もクレジット表記も不要。再生のたびにライセンスとともに記録されます。',
   cta_get:'無料で入手', cta_compare:'選択肢を比較',
   stat1_v:'0円', stat1:'音楽の費用', stat2_v:'0円', stat2:'アプリの費用', stat3_v:'0台', stat3:'追加の機器',
   free_kicker:'無料の理由', free_title:'ライセンスこそが強み。',
@@ -452,7 +455,7 @@ de: {
   nav_free:'Warum kostenlos', nav_compare:'Vergleich', nav_how:'So funktioniert’s', nav_proof:'Wiedergabeprotokoll',
   badge:'Pixabay Content License · kostenlos, auch kommerziell',
   title:'100 % kostenlose Musik für Ihren Betrieb. Gespielt von der Kamera, die Sie schon haben.',
-  lead:'Titel auf Pixabay Music auswählen, auf ♫ klicken – und sie laufen über den Audioausgang Ihrer AXIS-Kamera. Kein Abo, keine Gebühr pro Titel, keine Namensnennung – und ein Protokoll jeder Wiedergabe samt Lizenz.',
+  lead:'Titel auf <a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a> auswählen, auf ♫ klicken – und sie laufen über den Audioausgang Ihrer AXIS-Kamera. Kein Abo, keine Gebühr pro Titel, keine Namensnennung – und ein Protokoll jeder Wiedergabe samt Lizenz.',
   cta_get:'Kostenlos holen', cta_compare:'Optionen vergleichen',
   stat1_v:'0 €', stat1:'für die Musik', stat2_v:'0 €', stat2:'für die App', stat3_v:'0', stat3:'zusätzliche Geräte',
   free_kicker:'Warum kostenlos', free_title:'Die Lizenz ist das Feature.',
@@ -511,6 +514,7 @@ function render() {
   const t = T[lang];
   document.documentElement.lang = lang;
   document.querySelectorAll('[data-i18n]').forEach((el) => { el.innerHTML = t[el.dataset.i18n] ?? T.en[el.dataset.i18n]; });
+  document.querySelectorAll('[data-i18n-alt]').forEach((el) => { el.alt = t[el.dataset.i18nAlt] ?? T.en[el.dataset.i18nAlt]; });
   document.querySelectorAll('.langs button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
   document.getElementById('theme').textContent = theme === 'dark' ? t.light : t.dark;
   document.querySelectorAll('img[data-shot]').forEach((img) => { img.src = `assets/${img.dataset.shot}-${theme}.webp`; img.alt = t[`alt_${img.dataset.shot}`]; });
