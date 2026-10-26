@@ -1,9 +1,4 @@
-<!--
-  Before publishing, replace the placeholder:
-  - YOUR-PAGES-URL  → your GitHub Pages address, e.g. https://kotyzap.github.io/free-music-jukebox/
--->
-
-<a href="https://YOUR-PAGES-URL/">
+<a href="https://kotyzap.github.io/Pixabay-Music-on-Axis/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.svg">
     <img src="docs/assets/banner-light.svg" alt="Free Music Jukebox — 100% free music for your venue, played by the AXIS camera you already have" width="100%">
@@ -11,7 +6,7 @@
 </a>
 
 <p align="center">
-  <a href="../../releases/latest"><img src="https://img.shields.io/badge/version-0.8.7-12303f?style=flat-square" alt="Version 0.8.7"></a>
+  <a href="https://github.com/kotyzap/Pixabay-Music-on-Axis/releases/latest"><img src="https://img.shields.io/badge/version-0.8.8-12303f?style=flat-square" alt="Version 0.8.8"></a>
   <img src="https://img.shields.io/badge/AXIS-CamScripter%201.5.3%2B-12303f?style=flat-square" alt="Runs on AXIS cameras with CamScripter 1.5.3 or newer">
   <img src="https://img.shields.io/badge/Chrome-extension%20MV3-12303f?style=flat-square" alt="Chrome extension, Manifest V3">
   <img src="https://img.shields.io/badge/music-Pixabay%20Content%20License-d8f04a?style=flat-square&labelColor=12303f" alt="Music under the Pixabay Content License">
@@ -24,14 +19,14 @@
 </p>
 
 <p align="center">
-  <a href="../../releases/latest"><b>⬇ Download</b></a> ·
-  <a href="https://YOUR-PAGES-URL/">Website</a> ·
+  <a href="https://github.com/kotyzap/Pixabay-Music-on-Axis/releases/latest"><b>⬇ Download</b></a> ·
+  <a href="https://kotyzap.github.io/Pixabay-Music-on-Axis/">Website</a> ·
   <a href="#-install">Install</a> ·
   <a href="#-compare">Compare</a> ·
   <a href="#-licensing">Licensing</a> ·
-  <a href="https://YOUR-PAGES-URL/?lang=cs">Česky</a> ·
-  <a href="https://YOUR-PAGES-URL/?lang=ja">日本語</a> ·
-  <a href="https://YOUR-PAGES-URL/?lang=de">Deutsch</a>
+  <a href="https://kotyzap.github.io/Pixabay-Music-on-Axis/?lang=cs">Česky</a> ·
+  <a href="https://kotyzap.github.io/Pixabay-Music-on-Axis/?lang=ja">日本語</a> ·
+  <a href="https://kotyzap.github.io/Pixabay-Music-on-Axis/?lang=de">Deutsch</a>
 </p>
 
 <p align="center">
@@ -144,7 +139,7 @@ If anyone asks what was playing, you can show them.
 **You need:** an AXIS camera with an audio line-out and a powered speaker · [CamScripter App](https://camstreamer.com) 1.5.3 or newer on the camera · Google Chrome on a computer in the same network.  
 Tested on **AXIS Q1656** (ARTPEC-8).
 
-1. Download `free_music_jukebox_x.y.z.zip` from [**Releases**](../../releases/latest) and install it in **CamScripter**.
+1. Download `free_music_jukebox_x.y.z.zip` from [**Releases**](https://github.com/kotyzap/Pixabay-Music-on-Axis/releases/latest) and install it in **CamScripter**.
 2. Open the app, go to **Settings** and enter a camera user it can use to play audio clips. Save.
 3. In **My files** click **Get the extension**, unzip it, open `chrome://extensions`, turn on **Developer mode** and choose **Load unpacked**.
 4. Click the extension icon, enter the camera address, user and password, **Save** — then click ♫ on [pixabay.com/music](https://pixabay.com/music/).
