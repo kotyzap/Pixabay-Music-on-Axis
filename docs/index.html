@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Music Jukebox — 100% free music for your venue</title>
+<meta name="description" content="Free music for cafés, gyms and shops, played by the AXIS camera you already have. Pixabay tracks are free for commercial use — every play is logged with its licence.">
+<meta name="theme-color" content="#f5f8fa">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2312303f'/%3E%3Ctext x='32' y='45' font-size='36' text-anchor='middle' fill='%23d8f04a'%3E%E2%99%AB%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#f5f8fa;--card:#ffffff;--soft:#eaf1f5;--ink:#14202b;--muted:#52606d;--line:#dbe3e8;--link:#1d5f7d;
+  --ok:#17633d;--okbg:#e6f5ec;--warn:#8a3b00;--shadow:0 24px 60px -24px rgba(18,48,63,.45);
+  --navy:#12303f;--navy2:#183c4e;--navyline:#2b5164;--navytext:#b9cbd5;--lime:#d8f04a;--limeink:#14202b;
+}
+[data-theme=dark]{
+  --bg:#0d161d;--card:#131f28;--soft:#182833;--ink:#e6edf2;--muted:#a3b3bf;--line:#273541;--link:#8fc4dd;
+  --ok:#8fe0b0;--okbg:#14301f;--warn:#f5b26b;--shadow:0 24px 60px -20px rgba(0,0,0,.75);
+  --navy:#0a1d27;--navy2:#13303f;--navyline:#24485a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,-apple-system,"Segoe UI","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--link)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3,.stats span,td,th{overflow-wrap:break-word;hyphens:auto}
+h1,h2,h3{text-wrap:balance}
+.display{font-family:"Bricolage Grotesque",Inter,"Hiragino Sans","Noto Sans JP",sans-serif;font-weight:800;letter-spacing:-.02em}
+:lang(ja) .display{letter-spacing:0}
+:lang(ja) p,:lang(ja) h1,:lang(ja) h2,:lang(ja) h3,:lang(ja) li,:lang(ja) td{line-break:strict}
+.kicker{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+:lang(ja) .kicker{text-transform:none;letter-spacing:.04em}
+h2.display{margin:10px 0 14px;font-size:clamp(30px,4vw,44px);line-height:1.08}
+.sub{margin:0 0 32px;font-size:18px;color:var(--muted);max-width:680px}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;font-weight:700;text-decoration:none;border:1px solid transparent}
+.btn.lime{background:var(--lime);color:var(--limeink)}
+.btn.out{border-color:var(--line);background:var(--card);color:var(--ink)}
+.btn.dark{background:#14202b;color:var(--lime)}
+.btn.line{border:1.5px solid #14202b;color:#14202b}
+.btn:hover{filter:brightness(.96)}
+[hidden]{display:none!important}
+/* nav */
+header.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{height:64px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font-weight:700;white-space:nowrap}
+.logo{width:32px;height:32px;border-radius:9px;background:#12303f;color:var(--lime);display:grid;place-items:center;font-size:18px}
+.navlinks{display:flex;gap:22px;margin-left:12px}
+.navlinks a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.navlinks a:hover{color:var(--ink)}
+.spacer{flex:1}
+.langs{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--card)}
+.langs button{border:0;background:none;color:var(--muted);font:600 13px/1 Inter,sans-serif;min-height:40px;padding:0 11px;cursor:pointer}
+.langs button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.pill-btn{min-height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;white-space:nowrap}
+/* hero */
+.hero{padding:72px 0 56px}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center}
+.hero .copy{display:flex;flex-direction:column;gap:22px}
+.badge{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;padding:8px 14px;border-radius:999px;background:var(--okbg);color:var(--ok);font-size:13px;font-weight:700}
+h1.display{margin:0;font-size:clamp(38px,5.4vw,64px);line-height:1.02;letter-spacing:-.03em}
+:lang(ja) h1.display{line-height:1.2;font-size:clamp(32px,4.4vw,52px)}
+.lead{margin:0;font-size:19px;color:var(--muted);max-width:540px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:10px;max-width:520px}
+.stats div{border-top:2px solid var(--ink);padding-top:10px}
+.stats b{display:block;font-family:"Bricolage Grotesque",Inter,sans-serif;font-size:32px;font-weight:800;line-height:1.05}
+.stats span{font-size:13px;color:var(--muted)}
+.stage{position:relative;min-height:470px}
+.frame{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
+.frame .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:var(--soft);border-bottom:1px solid var(--line)}
+.frame .bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.frame .bar span{margin-left:8px;font:12px ui-monospace,Menlo,monospace;color:var(--muted)}
+.frame img,.popup img{display:block;width:100%;height:auto}
+.popup{position:absolute;right:-20px;bottom:0;width:36%;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow)}
+/* why free (dark band) */
+.band{background:var(--navy);color:#e7f0f4}
+.band .wrap{padding-top:80px;padding-bottom:80px}
+.band .kicker{color:var(--lime)}
+.band h2{max-width:760px}
+.band .sub{color:var(--navytext)}
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.licard{background:var(--navy2);border-radius:16px;padding:26px}
+.licard .ic{width:40px;height:40px;border-radius:11px;background:var(--lime);color:#12303f;display:grid;place-items:center;margin-bottom:16px}
+.licard h3{margin:0 0 6px;font-size:19px}
+.licard p{margin:0;color:var(--navytext);font-size:15px}
+.rule{margin-top:18px;display:flex;gap:14px;align-items:flex-start;border:1px solid var(--navyline);border-radius:16px;padding:20px 24px}
+.rule p{margin:0;color:#d9e5eb;font-size:15px}
+.rule b{color:#f0c27a}
+/* compare */
+section.pad .wrap{padding-top:80px;padding-bottom:80px}
+.tbox{overflow-x:auto;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;vertical-align:top}
+.cmp{min-width:760px;font-size:15px}
+.cmp thead tr{background:var(--soft)}
+.cmp thead th{padding:16px 20px;font-size:13px;color:var(--muted);font-weight:700}
+.cmp tbody tr{border-top:1px solid var(--line)}
+.cmp tbody th{padding:18px 20px;font-weight:700}
+.cmp td{padding:18px 20px;color:var(--muted)}
+.cmp td.no{color:var(--warn);font-weight:600}
+.cmp tr.us{background:var(--okbg)}
+.cmp tr.us th{font-weight:800;color:var(--ink)}
+.cmp tr.us td{font-weight:700;color:var(--ok)}
+.fine{margin:16px 0 0;font-size:13.5px;color:var(--muted);max-width:900px}
+/* how */
+section.alt{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.step{border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--bg)}
+.step .n{font-family:"Bricolage Grotesque",Inter,sans-serif;font-size:44px;font-weight:800;line-height:1;color:var(--link)}
+.step h3{margin:14px 0 6px;font-size:19px}
+.step p{margin:0;color:var(--muted);font-size:15px}
+/* proof */
+.proof{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center}
+ul.checks{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;color:var(--muted);font-size:15px}
+ul.checks li{display:flex;gap:12px}
+ul.checks svg{flex:none;margin-top:3px;stroke:var(--ok)}
+ul.checks b{color:var(--ink)}
+.logbox{border:1px solid var(--line);border-radius:16px;background:var(--card);overflow:hidden}
+.loghead{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.loghead b{font-size:15px}
+.chip{font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--okbg);color:var(--ok);font-weight:700;white-space:nowrap}
+.log{min-width:520px;font-size:13.5px}
+.log thead th{padding:10px 8px;font-weight:600;color:var(--muted)}
+.log thead th:first-child,.log td:first-child{padding-left:18px}
+.log thead th:last-child,.log td:last-child{padding-right:18px;text-align:right}
+.log tbody tr{border-top:1px solid var(--line)}
+.log td{padding:11px 8px}
+.log td.num{font-variant-numeric:tabular-nums;color:var(--muted)}
+.log .tt{font-weight:600}.log .ar{color:var(--muted);font-size:12.5px}
+.lic{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid var(--ok);color:var(--ok);white-space:nowrap}
+/* install */
+ol.inst{margin:0;padding:0;list-style:none;counter-reset:i;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+ol.inst li{counter-increment:i;position:relative;padding:22px 22px 22px 66px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--muted);font-size:15px}
+ol.inst li:before{content:counter(i);position:absolute;left:22px;top:20px;width:30px;height:30px;border-radius:9px;background:var(--lime);color:var(--limeink);display:grid;place-items:center;font-weight:800;font-size:14px}
+ol.inst b{color:var(--ink)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--soft);border:1px solid var(--line);border-radius:6px;padding:1px 6px;color:var(--ink);word-break:break-word}
+/* cta + footer */
+.cta{border-radius:22px;background:var(--lime);color:#14202b;padding:48px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.cta div:first-child{flex:1 1 420px}
+.cta h2{margin:0 0 8px;font-size:clamp(28px,3.6vw,40px);line-height:1.08}
+.cta p{margin:0;font-size:17px;color:#35402b}
+footer{border-top:1px solid var(--line)}
+footer .wrap{padding-top:32px;padding-bottom:48px;display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between;font-size:13.5px;color:var(--muted)}
+footer b{color:var(--ink)}
+footer p{margin:0}
+@media (max-width:920px){
+  .navlinks{display:none}
+  .hero .grid,.proof,ol.inst{grid-template-columns:minmax(0,1fr)}
+  .cards3{grid-template-columns:minmax(0,1fr)}
+  .hero{padding-top:40px}
+  .stage{min-height:0}
+  .popup{position:static;width:62%;margin:-48px 0 0 auto}
+  .cta{padding:32px}
+}
+@media (max-width:560px){
+  header.top .wrap{gap:10px}
+  .brand span:last-child{display:none}
+  .langs button{padding:0 8px}
+  .stats b{font-size:26px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="logo">♫</span><span>Free Music Jukebox</span></a>
+    <nav class="navlinks" aria-label="Sections">
+      <a href="#free" data-i18n="nav_free"></a><a href="#compare" data-i18n="nav_compare"></a><a href="#how" data-i18n="nav_how"></a><a href="#proof" data-i18n="nav_proof"></a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" data-lang="en">EN</button><button type="button" data-lang="cs">CZ</button><button type="button" data-lang="ja">JP</button><button type="button" data-lang="de">DE</button>
+    </div>
+    <button class="pill-btn" id="theme" type="button"></button>
+    <a class="pill-btn" href="#" data-cfg="repo" hidden>GitHub</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap grid">
+    <div class="copy">
+      <div class="badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="badge"></span></div>
+      <h1 class="display" data-i18n="title"></h1>
+      <p class="lead" data-i18n="lead"></p>
+      <div class="ctas">
+        <a class="btn lime" href="#install" data-cfg="release" data-i18n="cta_get"></a>
+        <a class="btn out" href="#compare" data-i18n="cta_compare"></a>
+      </div>
+      <div class="stats">
+        <div><b data-i18n="stat1_v"></b><span data-i18n="stat1"></span></div>
+        <div><b data-i18n="stat2_v"></b><span data-i18n="stat2"></span></div>
+        <div><b data-i18n="stat3_v"></b><span data-i18n="stat3"></span></div>
+      </div>
+    </div>
+    <div class="stage">
+      <div class="frame">
+        <div class="bar"><i></i><i></i><i></i><span>axis-q1656.local · Free Music Jukebox</span></div>
+        <img data-shot="camera" width="1280" height="720" alt="">
+      </div>
+      <div class="popup"><img data-shot="popup" width="360" height="760" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<section id="free" class="band">
+  <div class="wrap">
+    <div class="kicker" data-i18n="free_kicker"></div>
+    <h2 class="display" data-i18n="free_title"></h2>
+    <p class="sub" data-i18n="free_sub"></p>
+    <div class="cards3">
+      <div class="licard"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 9l2.5-5h13L21 9"/><path d="M12 13v4"/></svg></div><h3 data-i18n="lic1_t"></h3><p data-i18n="lic1_d"></p></div>
+      <div class="licard"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><h3 data-i18n="lic2_t"></h3><p data-i18n="lic2_d"></p></div>
+      <div class="licard"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></div><h3 data-i18n="lic3_t"></h3><p data-i18n="lic3_d"></p></div>
+    </div>
+    <div class="rule"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f0c27a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16.5v.5"/></svg><p><b data-i18n="rule_b"></b> <span data-i18n="rule_t"></span></p></div>
+  </div>
+</section>
+
+<section id="compare" class="pad">
+  <div class="wrap">
+    <div class="kicker" data-i18n="cmp_kicker"></div>
+    <h2 class="display" data-i18n="cmp_title"></h2>
+    <p class="sub" data-i18n="cmp_sub"></p>
+    <div class="tbox">
+      <table class="cmp">
+        <thead><tr><th scope="col" style="width:24%"></th><th scope="col" data-i18n="th_cost"></th><th scope="col" data-i18n="th_ok"></th><th scope="col" data-i18n="th_hw"></th><th scope="col" data-i18n="th_proof"></th></tr></thead>
+        <tbody>
+          <tr><th scope="row" data-i18n="r1_name"></th><td data-i18n="r1_cost"></td><td class="no" data-i18n="r1_ok"></td><td data-i18n="r1_hw"></td><td data-i18n="r1_proof"></td></tr>
+          <tr><th scope="row" data-i18n="r2_name"></th><td data-i18n="r2_cost"></td><td data-i18n="r2_ok"></td><td data-i18n="r2_hw"></td><td data-i18n="r2_proof"></td></tr>
+          <tr class="us"><th scope="row">Free Music Jukebox + Pixabay</th><td data-i18n="stat1_v"></td><td data-i18n="r3_ok"></td><td data-i18n="r3_hw"></td><td data-i18n="r3_proof"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fine" data-i18n="cmp_note"></p>
+  </div>
+</section>
+
+<section id="how" class="alt pad">
+  <div class="wrap">
+    <div class="kicker" data-i18n="how_kicker"></div>
+    <h2 class="display" data-i18n="how_title" style="margin-bottom:36px"></h2>
+    <div class="cards3">
+      <div class="step"><div class="n">01</div><h3 data-i18n="s1_t"></h3><p data-i18n="s1_d"></p></div>
+      <div class="step"><div class="n">02</div><h3 data-i18n="s2_t"></h3><p data-i18n="s2_d"></p></div>
+      <div class="step"><div class="n">03</div><h3 data-i18n="s3_t"></h3><p data-i18n="s3_d"></p></div>
+    </div>
+  </div>
+</section>
+
+<section id="proof" class="pad">
+  <div class="wrap proof">
+    <div>
+      <div class="kicker" data-i18n="proof_kicker"></div>
+      <h2 class="display" data-i18n="proof_title"></h2>
+      <p class="sub" data-i18n="proof_sub" style="margin-bottom:18px"></p>
+      <ul class="checks">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p1"></span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p2"></span></li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="p3"></span></li>
+      </ul>
+    </div>
+    <div class="logbox">
+      <div class="loghead"><b data-i18n="log_title"></b><div class="spacer"></div><span class="chip" data-i18n="log_ok"></span></div>
+      <div style="overflow-x:auto">
+        <table class="log">
+          <thead><tr><th scope="col" data-i18n="log_start"></th><th scope="col" data-i18n="log_track"></th><th scope="col" data-i18n="log_lic"></th><th scope="col" data-i18n="log_sec"></th></tr></thead>
+          <tbody id="logrows"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="install" class="alt pad">
+  <div class="wrap">
+    <div class="kicker" data-i18n="inst_kicker"></div>
+    <h2 class="display" data-i18n="inst_title"></h2>
+    <p class="sub" data-i18n="inst_sub"></p>
+    <ol class="inst"><li data-i18n="i1"></li><li data-i18n="i2"></li><li data-i18n="i3"></li><li data-i18n="i4"></li></ol>
+  </div>
+</section>
+
+<section class="pad">
+  <div class="wrap">
+    <div class="cta">
+      <div><h2 class="display" data-i18n="cta_title"></h2><p data-i18n="cta_sub"></p></div>
+      <div class="ctas" style="margin:0">
+        <a class="btn dark" href="#install" data-cfg="release" data-i18n="cta_dl"></a>
+        <a class="btn line" href="#" data-cfg="kofi" data-i18n="cta_kofi" hidden></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Pavel Kotyza</b> · <a href="https://4xs.dev" rel="noopener">4xs.dev</a> · <i>I teach Axis cameras new tricks!</i></p>
+    <p><span data-i18n="foot_aff"></span> <span data-i18n="foot_tp"></span></p>
+  </div>
+</footer>
+
+<script>
+// ---- Fill these in before publishing (buttons stay hidden / point to #install while empty) ----
+const CONFIG = {
+  repo: '',  // e.g. 'https://github.com/kotyzap/free-music-jukebox'
+  kofi: '',  // e.g. 'https://ko-fi.com/yourname'
+};
+
+const LOG = [
+  ['19:40:01', 'Jazz Cafe - Midnight Club Music', 'Jazz Cafe', 199],
+  ['19:36:42', 'Sunrise Meditation / Lo-fi Music', 'tramp963', 478],
+  ['19:34:09', 'Cafe - Cafe Music', 'Cafe Music', 153],
+  ['18:33:26', 'Cafe Lofi', 'ZephiraMusic', 110],
+  ['18:32:56', 'Modern Jazz', 'Jazz Cafe', 154],
+];
+
+const T = {
+en: {
+  nav_free:'Why it’s free', nav_compare:'Compare', nav_how:'How it works', nav_proof:'Play log',
+  badge:'Pixabay Content License · free for commercial use',
+  title:'100% free music for your venue. Played by the camera you already have.',
+  lead:'Pick tracks on Pixabay Music, click ♫, and they play from your AXIS camera’s audio line-out. No subscription, no per-track fee, no attribution — and a log of every play with its licence.',
+  cta_get:'Get it free', cta_compare:'Compare the options',
+  stat1_v:'$0', stat1:'for the music', stat2_v:'$0', stat2:'for the app', stat3_v:'0', stat3:'extra devices',
+  free_kicker:'Why it’s free', free_title:'The licence is the feature.',
+  free_sub:'Every track comes from Pixabay Music under the Pixabay Content License. Here is what that licence lets a business do — and the one thing it doesn’t.',
+  lic1_t:'Commercial use is allowed', lic1_d:'Play it in your café, gym, shop or waiting room. No business tier to buy, no per-location price.',
+  lic2_t:'No attribution required', lic2_d:'Nothing to announce, nothing to put on a poster. The Jukebox still records the artist and source page for you.',
+  lic3_t:'Free to download', lic3_d:'No account fee, no per-download price. You pick a track, Pixabay hands it over, the camera plays it.',
+  rule_b:'The one rule:', rule_t:'you may not sell or redistribute the tracks as they are. That’s why each track stays on your camera and is never shared, re-uploaded or offered for download.',
+  cmp_kicker:'Compare', cmp_title:'How venues usually get background music',
+  cmp_sub:'A personal streaming app is the easy choice — and the one its own terms rule out for a business.',
+  th_cost:'Music cost', th_ok:'OK in a business?', th_hw:'Hardware', th_proof:'Proof of what played',
+  r1_name:'Personal streaming app', r1_cost:'Monthly subscription', r1_ok:'No — personal use only', r1_hw:'Phone or PC + speaker', r1_proof:'None',
+  r2_name:'Business music service', r2_cost:'Monthly fee per location', r2_ok:'Yes, licensed by the provider', r2_hw:'Their player box or app', r2_proof:'Depends on the provider',
+  r3_ok:'Yes — commercial use allowed*', r3_hw:'Your AXIS camera + a speaker', r3_proof:'Tamper-evident log, CSV/JSON',
+  cmp_note:'* The Pixabay Content License covers commercial use. Whether a venue also needs a licence from a collecting society (ASCAP, BMI, SESAC or GMR in the US, GEMA in Germany, OSA in Czechia, JASRAC in Japan) depends on the country and the track. The play log documents each track’s source and licence. Not legal advice.',
+  how_kicker:'How it works', how_title:'From Pixabay to your speaker in three clicks',
+  s1_t:'Click ♫ on pixabay.com/music', s1_d:'The Chrome extension turns every Download button into ♫. Pixabay’s own download runs — one track per click, as Pixabay’s terms expect.',
+  s2_t:'It lands on the camera', s2_d:'Title, artist, source page and licence are stored with the file. Long tracks are re-encoded in your browser to fit the camera.',
+  s3_t:'It plays from the line-out', s3_d:'Plug a speaker into the camera’s audio out. Shuffle, next and loop from the camera page or the extension — one shared player.',
+  proof_kicker:'Play log', proof_title:'Free music you can account for.',
+  proof_sub:'If anyone asks what was playing, you can show them. Every play is written down with its source and licence.',
+  p1:'<b>Every play recorded</b> — time, track, artist, licence, source page, seconds played.',
+  p2:'<b>Tamper-evident</b> — daily logs are hash-chained; Verify chain shows if anything was changed.',
+  p3:'<b>Venue mode</b> — only tracks with a commercial-use licence are allowed to play.',
+  log_title:'Play log · 26 Oct 2026', log_ok:'Chain verified', log_start:'Start', log_track:'Track', log_lic:'Licence', log_sec:'Sec',
+  inst_kicker:'Install', inst_title:'Up and running in ten minutes', inst_sub:'Done once per camera. You need an AXIS camera with audio line-out, CamScripter 1.5.3+ and Google Chrome.',
+  i1:'Download <code>free_music_jukebox_x.y.z.zip</code> from Releases and install it in <b>CamScripter</b>.',
+  i2:'Open the app, go to <b>Settings</b> and enter a camera user it can use to play audio clips. Save.',
+  i3:'In <b>My files</b> click <b>Get the extension</b>, unzip it, open <code>chrome://extensions</code>, turn on <b>Developer mode</b> and choose <b>Load unpacked</b>.',
+  i4:'Click the extension icon, enter the camera address, user and password, <b>Save</b> — then click ♫ on pixabay.com/music.',
+  cta_title:'Your camera already has a speaker port. Use it.',
+  cta_sub:'Needs an AXIS camera with audio line-out, CamScripter 1.5.3+ and Google Chrome. Tested on AXIS Q1656.',
+  cta_dl:'Download free', cta_kofi:'Buy me a coffee on Ko-fi',
+  foot_aff:'Not affiliated with Axis Communications or Pixabay. AXIS is a trademark of Axis AB.', foot_tp:'Bundles lamejs (LGPL) for MP3 encoding.',
+  dark:'Dark', light:'Light',
+  alt_camera:'Free Music Jukebox camera page: My files library of Pixabay tracks and the player bar',
+  alt_popup:'Pixabay Music on Axis extension popup: send status, now playing and controls',
+},
+cs: {
+  nav_free:'Proč zdarma', nav_compare:'Srovnání', nav_how:'Jak to funguje', nav_proof:'Záznam přehrávání',
+  badge:'Pixabay Content License · zdarma i pro komerční použití',
+  title:'Hudba pro vaši provozovnu, 100% zdarma. Hraje ji kamera, kterou už máte.',
+  lead:'Vyberte skladby na Pixabay Music, klikněte na ♫ a hrají z audio výstupu vaší kamery AXIS. Žádné předplatné, žádný poplatek za skladbu, žádné uvádění autora — a záznam každého přehrání i s licencí.',
+  cta_get:'Získat zdarma', cta_compare:'Porovnat možnosti',
+  stat1_v:'0 Kč', stat1:'za hudbu', stat2_v:'0 Kč', stat2:'za aplikaci', stat3_v:'0', stat3:'zařízení navíc',
+  free_kicker:'Proč zdarma', free_title:'Licence je ta hlavní výhoda.',
+  free_sub:'Každá skladba pochází z Pixabay Music pod licencí Pixabay Content License. Tohle licence provozovně dovoluje — a tohle jediné ne.',
+  lic1_t:'Komerční použití je povolené', lic1_d:'Pusťte ji v kavárně, ve fitku, v obchodě nebo v čekárně. Žádný firemní tarif, žádná cena za pobočku.',
+  lic2_t:'Bez uvádění autora', lic2_d:'Nic nemusíte hlásit ani vyvěšovat. Jukebox si interpreta a zdrojovou stránku přesto zapíše.',
+  lic3_t:'Stažení zdarma', lic3_d:'Žádný poplatek za účet ani za stažení. Vyberete skladbu, Pixabay ji předá a kamera ji přehraje.',
+  rule_b:'Jediné pravidlo:', rule_t:'skladby nesmíte prodávat ani dál šířit tak, jak jsou. Proto každá zůstává ve vaší kameře a nikde se nesdílí, znovu nenahrává ani nenabízí ke stažení.',
+  cmp_kicker:'Srovnání', cmp_title:'Jak provozovny obvykle řeší hudbu',
+  cmp_sub:'Osobní streamovací aplikace je nejjednodušší volba — a právě tu její vlastní podmínky pro firmy vylučují.',
+  th_cost:'Cena hudby', th_ok:'Smí se v provozovně?', th_hw:'Zařízení', th_proof:'Doklad, co hrálo',
+  r1_name:'Osobní streamovací aplikace', r1_cost:'Měsíční předplatné', r1_ok:'Ne — jen pro osobní použití', r1_hw:'Telefon nebo PC + reproduktor', r1_proof:'Žádný',
+  r2_name:'Hudební služba pro firmy', r2_cost:'Měsíční poplatek za pobočku', r2_ok:'Ano, licencuje poskytovatel', r2_hw:'Jejich přehrávač nebo aplikace', r2_proof:'Podle poskytovatele',
+  r3_ok:'Ano — komerční použití povoleno*', r3_hw:'Vaše kamera AXIS + reproduktor', r3_proof:'Záznam, ve kterém je změna poznat, CSV/JSON',
+  cmp_note:'* Pixabay Content License pokrývá komerční použití. Zda provozovna potřebuje i licenci kolektivního správce (v Česku OSA, v Německu GEMA, v USA ASCAP, BMI, SESAC nebo GMR, v Japonsku JASRAC), záleží na zemi a skladbě. Záznam přehrávání dokládá zdroj a licenci každé skladby. Nejde o právní radu.',
+  how_kicker:'Jak to funguje', how_title:'Z Pixabay do reproduktoru na tři kliknutí',
+  s1_t:'Klikněte na ♫ na pixabay.com/music', s1_d:'Rozšíření pro Chrome promění každé tlačítko Download na ♫. Proběhne vlastní stahování Pixabay — jedna skladba na kliknutí, jak podmínky Pixabay počítají.',
+  s2_t:'Skladba se uloží do kamery', s2_d:'Název, interpret, zdrojová stránka a licence se uloží se souborem. Dlouhé skladby se v prohlížeči překódují, aby se do kamery vešly.',
+  s3_t:'Hraje z audio výstupu', s3_d:'Připojte reproduktor k audio výstupu kamery. Náhodné pořadí, další skladba a opakování ze stránky kamery i z rozšíření — jeden společný přehrávač.',
+  proof_kicker:'Záznam přehrávání', proof_title:'Hudba zdarma, kterou umíte doložit.',
+  proof_sub:'Když se někdo zeptá, co hrálo, můžete mu to ukázat. Každé přehrání se zapíše i se zdrojem a licencí.',
+  p1:'<b>Každé přehrání zapsané</b> — čas, skladba, interpret, licence, zdrojová stránka, odehrané sekundy.',
+  p2:'<b>Změna je poznat</b> — denní záznamy jsou řetězené hashem; Verify chain ukáže, jestli se něco změnilo.',
+  p3:'<b>Režim provozovny</b> — hrát smí jen skladby s licencí pro komerční použití.',
+  log_title:'Záznam přehrávání · 26. 10. 2026', log_ok:'Řetězec ověřen', log_start:'Začátek', log_track:'Skladba', log_lic:'Licence', log_sec:'s',
+  inst_kicker:'Instalace', inst_title:'Hotovo za deset minut', inst_sub:'Jednou pro každou kameru. Potřebujete kameru AXIS s audio výstupem, CamScripter 1.5.3+ a Google Chrome.',
+  i1:'Stáhněte <code>free_music_jukebox_x.y.z.zip</code> z Releases a nainstalujte ho v <b>CamScripteru</b>.',
+  i2:'Otevřete aplikaci, v <b>Settings</b> zadejte uživatele kamery, kterým bude přehrávat audio klipy, a uložte.',
+  i3:'V <b>My files</b> klikněte na <b>Get the extension</b>, rozbalte ho, otevřete <code>chrome://extensions</code>, zapněte <b>Režim pro vývojáře</b> a zvolte <b>Načíst rozbalené</b>.',
+  i4:'Klikněte na ikonu rozšíření, zadejte adresu kamery, uživatele a heslo, <b>Save</b> — a pak klikněte na ♫ na pixabay.com/music.',
+  cta_title:'Vaše kamera už má výstup na reproduktor. Využijte ho.',
+  cta_sub:'Potřebujete kameru AXIS s audio výstupem, CamScripter 1.5.3+ a Google Chrome. Testováno na AXIS Q1656.',
+  cta_dl:'Stáhnout zdarma', cta_kofi:'Kupte mi kafe na Ko-fi',
+  foot_aff:'Nesouvisí se společnostmi Axis Communications ani Pixabay. AXIS je ochranná známka společnosti Axis AB.', foot_tp:'Obsahuje lamejs (LGPL) pro kódování MP3.',
+  dark:'Tmavý', light:'Světlý',
+  alt_camera:'Stránka kamery Free Music Jukebox: knihovna My files se skladbami z Pixabay a přehrávač',
+  alt_popup:'Rozšíření Pixabay Music on Axis: stav odeslání, co hraje a ovládání',
+},
+ja: {
+  nav_free:'無料の理由', nav_compare:'比較', nav_how:'仕組み', nav_proof:'再生ログ',
+  badge:'Pixabay Content License · 商用利用も無料',
+  title:'お店のBGMを、100%無料で。<br>今あるカメラが再生します。',
+  lead:'Pixabay Musicで曲を選んで♫をクリックするだけで、AXISカメラの音声出力から再生されます。サブスクリプションも1曲ごとの料金もクレジット表記も不要。再生のたびにライセンスとともに記録されます。',
+  cta_get:'無料で入手', cta_compare:'選択肢を比較',
+  stat1_v:'0円', stat1:'音楽の費用', stat2_v:'0円', stat2:'アプリの費用', stat3_v:'0台', stat3:'追加の機器',
+  free_kicker:'無料の理由', free_title:'ライセンスこそが強み。',
+  free_sub:'すべての曲は、Pixabay Content LicenseのもとでPixabay Musicから提供されます。このライセンスで店舗に認められていること、そして唯一認められていないことはこちらです。',
+  lic1_t:'商用利用OK', lic1_d:'カフェ、ジム、ショップ、待合室で流せます。法人プランも店舗ごとの料金もありません。',
+  lic2_t:'クレジット表記は不要', lic2_d:'アナウンスも掲示も必要ありません。それでもJukeboxはアーティストと出典ページを記録します。',
+  lic3_t:'ダウンロード無料', lic3_d:'アカウント料金もダウンロード料金もありません。曲を選べばPixabayから受け取り、カメラが再生します。',
+  rule_b:'唯一のルール：', rule_t:'曲をそのまま販売したり再配布したりすることはできません。そのため曲はカメラ内にとどまり、共有・再アップロード・ダウンロード提供されることはありません。',
+  cmp_kicker:'比較', cmp_title:'お店のBGM、よくある選択肢',
+  cmp_sub:'個人向けストリーミングアプリは手軽ですが、その利用規約自体が店舗での利用を認めていません。',
+  th_cost:'音楽の費用', th_ok:'店舗で使える？', th_hw:'機器', th_proof:'再生の記録',
+  r1_name:'個人向けストリーミングアプリ', r1_cost:'月額料金', r1_ok:'不可（個人利用のみ）', r1_hw:'スマホやPC＋スピーカー', r1_proof:'なし',
+  r2_name:'店舗向けBGMサービス', r2_cost:'店舗ごとの月額料金', r2_ok:'可（提供元がライセンス）', r2_hw:'専用プレーヤーやアプリ', r2_proof:'提供元による',
+  r3_ok:'可（商用利用OK）*', r3_hw:'今あるAXISカメラ＋スピーカー', r3_proof:'改ざんがわかるログ、CSV/JSON',
+  cmp_note:'* Pixabay Content Licenseは商用利用を認めています。店舗がさらに著作権管理団体（日本ではJASRAC、米国ではASCAP・BMI・SESAC・GMR、ドイツではGEMA、チェコではOSA）の許諾を必要とするかは、国や曲によって異なります。再生ログは各曲の出典とライセンスを記録します。法的助言ではありません。',
+  how_kicker:'仕組み', how_title:'Pixabayからスピーカーまで、3クリック',
+  s1_t:'pixabay.com/music で♫をクリック', s1_d:'Chrome拡張機能がダウンロードボタンを♫に変えます。Pixabay自身のダウンロードが行われ、Pixabayの規約どおり1クリックにつき1曲です。',
+  s2_t:'曲がカメラに保存される', s2_d:'曲名、アーティスト、出典ページ、ライセンスがファイルと一緒に保存されます。長い曲はカメラに収まるよう、ブラウザ内で再エンコードされます。',
+  s3_t:'音声出力から再生', s3_d:'カメラの音声出力にスピーカーを接続します。シャッフル、次の曲、リピートはカメラのページでも拡張機能でも操作でき、どちらも同じプレーヤーです。',
+  proof_kicker:'再生ログ', proof_title:'無料の音楽を、きちんと説明できる。',
+  proof_sub:'何が流れていたか聞かれても、すぐに見せられます。再生のたびに出典とライセンスが記録されます。',
+  p1:'<b>すべての再生を記録</b> — 時刻、曲名、アーティスト、ライセンス、出典ページ、再生秒数。',
+  p2:'<b>改ざんがわかる</b> — 日ごとのログはハッシュで連結され、Verify chainで変更の有無を確認できます。',
+  p3:'<b>店舗モード</b> — 商用利用が許可されたライセンスの曲だけを再生します。',
+  log_title:'再生ログ · 2026年10月26日', log_ok:'チェーン検証済み', log_start:'開始', log_track:'曲', log_lic:'ライセンス', log_sec:'秒',
+  inst_kicker:'インストール', inst_title:'10分で使い始められます', inst_sub:'カメラ1台につき1回だけ。音声出力付きのAXISカメラ、CamScripter 1.5.3以降、Google Chromeが必要です。',
+  i1:'Releasesから <code>free_music_jukebox_x.y.z.zip</code> をダウンロードし、<b>CamScripter</b>でインストールします。',
+  i2:'アプリを開き、<b>Settings</b> で音声クリップの再生に使うカメラのユーザーを入力して保存します。',
+  i3:'<b>My files</b> で <b>Get the extension</b> をクリックして解凍し、<code>chrome://extensions</code> を開いて<b>デベロッパーモード</b>をオンにし、<b>パッケージ化されていない拡張機能を読み込む</b>を選びます。',
+  i4:'拡張機能のアイコンをクリックし、カメラのアドレス、ユーザー、パスワードを入力して <b>Save</b>。あとは pixabay.com/music で♫をクリックするだけです。',
+  cta_title:'カメラには、もうスピーカー端子があります。使いましょう。',
+  cta_sub:'音声出力付きのAXISカメラ、CamScripter 1.5.3以降、Google Chromeが必要です。AXIS Q1656で動作確認済み。',
+  cta_dl:'無料でダウンロード', cta_kofi:'Ko-fiでコーヒーをおごる',
+  foot_aff:'Axis CommunicationsおよびPixabayとは関係ありません。AXISはAxis ABの商標です。', foot_tp:'MP3エンコードにlamejs（LGPL）を同梱しています。',
+  dark:'ダーク', light:'ライト',
+  alt_camera:'Free Music Jukeboxのカメラページ（PixabayのトラックとプレーヤーバーのあるMy filesライブラリ）',
+  alt_popup:'Pixabay Music on Axis 拡張機能のポップアップ（送信状況、再生中の曲、操作）',
+},
+de: {
+  nav_free:'Warum kostenlos', nav_compare:'Vergleich', nav_how:'So funktioniert’s', nav_proof:'Wiedergabeprotokoll',
+  badge:'Pixabay Content License · kostenlos, auch kommerziell',
+  title:'100 % kostenlose Musik für Ihren Betrieb. Gespielt von der Kamera, die Sie schon haben.',
+  lead:'Titel auf Pixabay Music auswählen, auf ♫ klicken – und sie laufen über den Audioausgang Ihrer AXIS-Kamera. Kein Abo, keine Gebühr pro Titel, keine Namensnennung – und ein Protokoll jeder Wiedergabe samt Lizenz.',
+  cta_get:'Kostenlos holen', cta_compare:'Optionen vergleichen',
+  stat1_v:'0 €', stat1:'für die Musik', stat2_v:'0 €', stat2:'für die App', stat3_v:'0', stat3:'zusätzliche Geräte',
+  free_kicker:'Warum kostenlos', free_title:'Die Lizenz ist das Feature.',
+  free_sub:'Jeder Titel stammt von Pixabay Music unter der Pixabay Content License. Das erlaubt sie einem Betrieb – und das eine nicht.',
+  lic1_t:'Kommerzielle Nutzung erlaubt', lic1_d:'Spielen Sie sie in Café, Studio, Laden oder Wartezimmer. Kein Business-Tarif, kein Preis pro Standort.',
+  lic2_t:'Keine Namensnennung nötig', lic2_d:'Nichts anzusagen, nichts auszuhängen. Die Jukebox speichert Interpret und Quellseite trotzdem für Sie.',
+  lic3_t:'Kostenloser Download', lic3_d:'Keine Kontogebühr, kein Preis pro Download. Sie wählen einen Titel, Pixabay liefert ihn, die Kamera spielt ihn.',
+  rule_b:'Die eine Regel:', rule_t:'Sie dürfen die Titel nicht unverändert verkaufen oder weiterverbreiten. Deshalb bleibt jeder Titel auf Ihrer Kamera und wird nie geteilt, erneut hochgeladen oder zum Download angeboten.',
+  cmp_kicker:'Vergleich', cmp_title:'Wie Betriebe üblicherweise an Hintergrundmusik kommen',
+  cmp_sub:'Eine private Streaming-App ist die einfachste Wahl – und genau die schließen ihre eigenen Bedingungen für Betriebe aus.',
+  th_cost:'Musikkosten', th_ok:'Im Betrieb erlaubt?', th_hw:'Hardware', th_proof:'Nachweis, was lief',
+  r1_name:'Private Streaming-App', r1_cost:'Monatliches Abo', r1_ok:'Nein – nur privat', r1_hw:'Handy oder PC + Lautsprecher', r1_proof:'Keiner',
+  r2_name:'Musikdienst für Betriebe', r2_cost:'Monatsgebühr pro Standort', r2_ok:'Ja, vom Anbieter lizenziert', r2_hw:'Dessen Player oder App', r2_proof:'Je nach Anbieter',
+  r3_ok:'Ja – kommerzielle Nutzung erlaubt*', r3_hw:'Ihre AXIS-Kamera + Lautsprecher', r3_proof:'Protokoll, in dem Änderungen auffallen, CSV/JSON',
+  cmp_note:'* Die Pixabay Content License deckt die kommerzielle Nutzung ab. Ob ein Betrieb zusätzlich eine Lizenz einer Verwertungsgesellschaft braucht (GEMA in Deutschland, OSA in Tschechien, ASCAP, BMI, SESAC oder GMR in den USA, JASRAC in Japan), hängt vom Land und vom Titel ab. Das Wiedergabeprotokoll belegt Quelle und Lizenz jedes Titels. Keine Rechtsberatung.',
+  how_kicker:'So funktioniert’s', how_title:'In drei Klicks von Pixabay in den Lautsprecher',
+  s1_t:'Auf pixabay.com/music ♫ klicken', s1_d:'Die Chrome-Erweiterung macht aus jedem Download-Button ♫. Pixabays eigener Download läuft – ein Titel pro Klick, wie es Pixabays Bedingungen vorsehen.',
+  s2_t:'Der Titel landet auf der Kamera', s2_d:'Titel, Interpret, Quellseite und Lizenz werden mit der Datei gespeichert. Lange Titel werden im Browser passend für die Kamera neu kodiert.',
+  s3_t:'Wiedergabe über den Audioausgang', s3_d:'Schließen Sie einen Lautsprecher an den Audioausgang der Kamera an. Zufall, nächster Titel und Wiederholen über Kameraseite oder Erweiterung – ein gemeinsamer Player.',
+  proof_kicker:'Wiedergabeprotokoll', proof_title:'Kostenlose Musik, die Sie belegen können.',
+  proof_sub:'Wenn jemand fragt, was lief, können Sie es zeigen. Jede Wiedergabe wird mit Quelle und Lizenz festgehalten.',
+  p1:'<b>Jede Wiedergabe erfasst</b> — Uhrzeit, Titel, Interpret, Lizenz, Quellseite, gespielte Sekunden.',
+  p2:'<b>Änderungen fallen auf</b> — Tagesprotokolle sind per Hash verkettet; Verify chain zeigt, ob etwas verändert wurde.',
+  p3:'<b>Betriebsmodus</b> — nur Titel mit einer Lizenz für kommerzielle Nutzung dürfen laufen.',
+  log_title:'Wiedergabeprotokoll · 26.10.2026', log_ok:'Kette geprüft', log_start:'Start', log_track:'Titel', log_lic:'Lizenz', log_sec:'Sek.',
+  inst_kicker:'Installation', inst_title:'In zehn Minuten startklar', inst_sub:'Einmal pro Kamera. Sie benötigen eine AXIS-Kamera mit Audioausgang, CamScripter 1.5.3+ und Google Chrome.',
+  i1:'<code>free_music_jukebox_x.y.z.zip</code> unter Releases herunterladen und in <b>CamScripter</b> installieren.',
+  i2:'App öffnen, unter <b>Settings</b> einen Kamerabenutzer zum Abspielen von Audioclips eintragen und speichern.',
+  i3:'Unter <b>My files</b> auf <b>Get the extension</b> klicken, entpacken, <code>chrome://extensions</code> öffnen, den <b>Entwicklermodus</b> einschalten und <b>Entpackte Erweiterung laden</b> wählen.',
+  i4:'Auf das Erweiterungssymbol klicken, Kameraadresse, Benutzer und Passwort eingeben, <b>Save</b> – dann auf pixabay.com/music ♫ klicken.',
+  cta_title:'Ihre Kamera hat schon einen Lautsprecheranschluss. Nutzen Sie ihn.',
+  cta_sub:'Benötigt eine AXIS-Kamera mit Audioausgang, CamScripter 1.5.3+ und Google Chrome. Getestet mit AXIS Q1656.',
+  cta_dl:'Kostenlos herunterladen', cta_kofi:'Mir einen Kaffee auf Ko-fi spendieren',
+  foot_aff:'Keine Verbindung zu Axis Communications oder Pixabay. AXIS ist eine Marke der Axis AB.', foot_tp:'Enthält lamejs (LGPL) zur MP3-Kodierung.',
+  dark:'Dunkel', light:'Hell',
+  alt_camera:'Kameraseite von Free Music Jukebox: Bibliothek My files mit Pixabay-Titeln und Player',
+  alt_popup:'Popup der Erweiterung Pixabay Music on Axis: Sendestatus, aktueller Titel und Steuerung',
+},
+};
+
+const store = { get: (k) => { try { return localStorage.getItem(k); } catch { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch {} } };
+let theme = store.get('fmj-site-theme') || 'light';
+let lang = 'en';
+
+function pickLang() {
+  const q = new URLSearchParams(location.search).get('lang');
+  const saved = store.get('fmj-site-lang');
+  const nav = (navigator.language || 'en').slice(0, 2);
+  for (const c of [q, saved, nav]) if (c && T[c]) return c;
+  return 'en';
+}
+
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function render() {
+  const t = T[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-i18n]').forEach((el) => { el.innerHTML = t[el.dataset.i18n] ?? T.en[el.dataset.i18n]; });
+  document.querySelectorAll('.langs button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
+  document.getElementById('theme').textContent = theme === 'dark' ? t.light : t.dark;
+  document.querySelectorAll('img[data-shot]').forEach((img) => { img.src = `assets/${img.dataset.shot}-${theme}.webp`; img.alt = t[`alt_${img.dataset.shot}`]; });
+  document.getElementById('logrows').innerHTML = LOG.map(([time, title, artist, sec]) =>
+    `<tr><td class="num">${time}</td><td><div class="tt">${esc(title)}</div><div class="ar">${esc(artist)}</div></td><td><span class="lic">Pixabay Content License</span></td><td class="num">${sec}</td></tr>`).join('');
+}
+
+function applyTheme() {
+  document.documentElement.dataset.theme = theme;
+  document.querySelector('meta[name=theme-color]').content = theme === 'dark' ? '#0d161d' : '#f5f8fa';
+}
+
+// optional links: GitHub/Ko-fi hidden and download pointing to #install until CONFIG is filled in
+const links = { repo: CONFIG.repo, release: CONFIG.repo && CONFIG.repo.replace(/\/$/, '') + '/releases/latest', kofi: CONFIG.kofi };
+document.querySelectorAll('[data-cfg]').forEach((a) => {
+  const href = links[a.dataset.cfg];
+  if (href) { a.href = href; a.hidden = false; a.rel = 'noopener'; }
+});
+
+document.querySelectorAll('.langs button').forEach((b) => b.onclick = () => {
+  lang = b.dataset.lang; store.set('fmj-site-lang', lang);
+  const u = new URL(location.href); u.searchParams.set('lang', lang); history.replaceState(null, '', u);
+  render();
+});
+document.getElementById('theme').onclick = () => { theme = theme === 'dark' ? 'light' : 'dark'; store.set('fmj-site-theme', theme); applyTheme(); render(); };
+
+lang = pickLang();
+applyTheme();
+render();
+</script>
+</body>
+</html>
